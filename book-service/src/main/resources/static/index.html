@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bibliothèque API Documentation</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui.css" />
+  <script src="https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui-bundle.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .topbar {
+      background-color: #1b1b1b;
+      padding: 10px;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      height: calc(100vh - 50px);
+    }
+    .api-container {
+      flex: 1;
+      padding: 10px;
+      border-right: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>Système de Gestion de Bibliothèque - Documentation API</h1>
+  </div>
+  <div class="container">
+    <div class="api-container">
+      <h2>API Livres</h2>
+      <div id="swagger-ui-books"></div>
+    </div>
+    <div class="api-container">
+      <h2>API Utilisateurs et Prêts</h2>
+      <div id="swagger-ui-users"></div>
+    </div>
+  </div>
+
+  <script>
+    window.onload = function() {
+      // Configuration pour l'API des livres
+      const booksUI = SwaggerUIBundle({
+        url: "http://localhost:8080/book-service/v3/api-docs",
+        dom_id: "#swagger-ui-books",
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout"
+      });
+
+      // Configuration pour l'API des utilisateurs
+      const usersUI = SwaggerUIBundle({
+        url: "http://localhost:8080/user-service/v3/api-docs",
+        dom_id: "#swagger-ui-users",
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout"
+      });
+    }
+  </script>
+</body>
+</html>
